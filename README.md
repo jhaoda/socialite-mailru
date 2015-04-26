@@ -47,7 +47,7 @@ protected $listen = [
 
 Add to `config/services.php`:
 ```php
-'vkontakte' => [
+'mailru' => [
     'client_id' => env('MAILRU_ID'),
     'client_secret' => env('MAILRU_SECRET'),
     'redirect' => env('MAILRU_REDIRECT'),  
