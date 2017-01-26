@@ -44,13 +44,13 @@ class Provider extends AbstractProvider implements ProviderInterface
             'session_key' => $token
         ];
 
-        ksort($params);
+        ksort($params, SORT_STRING);
 
         $_params = array_map(function($key, $value) {
             return $key . '=' . $value;
         }, array_keys($params), array_values($params));
 
-        $params['sig'] = md5(join('', $_params) . $this->clientSecret);
+        $params['sig'] = md5(implode('', $_params) . $this->clientSecret);
 
         $response = $this->getHttpClient()->get(
             'http://www.appsmail.ru/platform/api?' . http_build_query($params)
