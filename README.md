@@ -1,4 +1,4 @@
-# MailRu OAuth2 Provider for Laravel Socialite
+# MailRu OAuth2 Provider for Laravel Socialite (~3.0)
 
 ### 1. Installation
 
@@ -6,14 +6,12 @@
 
 ### 2. Service Provider
 
-* Remove `Laravel\Socialite\SocialiteServiceProvider` from your `providers[]` array in `config\app.php` if you have added it already.
 * Add `SocialiteProviders\Manager\ServiceProvider` to your `providers[]` array in `config\app.php`.
 
 For example:
 ```php
 'providers' => [
     // a whole bunch of providers
-    // remove 'Laravel\Socialite\SocialiteServiceProvider',
     SocialiteProviders\Manager\ServiceProvider::class, // add
 ];
 ```
@@ -25,7 +23,7 @@ For example:
 
 * Add your listeners (i.e. the ones from the providers) to the `SocialiteProviders\Manager\SocialiteWasCalled[]` that you just created.
 
-* The listener that you add for this provider is `JhaoDa\SocialiteProviders\MailRu\MailRuExtendSocialite::class`.
+* The listener that you add for this provider is 'JhaoDa\SocialiteProviders\MailRu\MailRuExtendSocialite@handle'.
 
 * Note: You do not need to add anything for the built-in socialite providers unless you override them with your own providers.
 
@@ -38,7 +36,7 @@ For example:
  */
 protected $listen = [
     SocialiteProviders\Manager\SocialiteWasCalled::class => [
-        JhaoDa\SocialiteProviders\MailRu\MailRuExtendSocialite::class
+        'JhaoDa\SocialiteProviders\MailRu\MailRuExtendSocialite@handle',
     ],
 ];
 ```
