@@ -1,6 +1,6 @@
 <?php
 
-namespace Jhaoda\SocialiteProviders\MailRu;
+namespace JhaoDa\SocialiteProviders\MailRu;
 
 use Laravel\Socialite\Two\ProviderInterface;
 use SocialiteProviders\Manager\OAuth2\User;
