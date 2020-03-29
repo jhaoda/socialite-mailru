@@ -2,6 +2,7 @@
 
 namespace JhaoDa\SocialiteProviders\MailRu;
 
+use Illuminate\Support\Arr;
 use Laravel\Socialite\Two\ProviderInterface;
 use SocialiteProviders\Manager\OAuth2\User;
 use SocialiteProviders\Manager\OAuth2\AbstractProvider;
@@ -67,7 +68,7 @@ class Provider extends AbstractProvider implements ProviderInterface
         return (new User())->setRaw($user)->map([
             'id'       => $user['uid'],
             'name'     => $user['first_name'].' '.$user['last_name'],
-            'email'    => array_get($user, 'email'),
+            'email'    => Arr::get($user, 'email'),
             'nickname' => array_reverse(explode('/', $user['link']))[1],
             'avatar'   => $user['has_pic'] ? $user['pic_190'] : null,
         ]);
