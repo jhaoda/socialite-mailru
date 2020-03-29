@@ -45,19 +45,19 @@ class Provider extends AbstractProvider implements ProviderInterface
             'session_key' => $token
         ];
 
-        ksort($params, SORT_STRING);
+        \ksort($params, \SORT_STRING);
 
-        $_params = array_map(function($key, $value) {
+        $_params = \array_map(static function($key, $value) {
             return $key . '=' . $value;
-        }, array_keys($params), array_values($params));
+        }, \array_keys($params), \array_values($params));
 
-        $params['sig'] = md5(implode('', $_params) . $this->clientSecret);
+        $params['sig'] = \md5(\implode('', $_params).$this->clientSecret);
 
         $response = $this->getHttpClient()->get(
-            'http://www.appsmail.ru/platform/api?' . http_build_query($params)
+            'http://www.appsmail.ru/platform/api?'.\http_build_query($params)
         );
 
-        return json_decode($response->getBody(), true)[0];
+        return \json_decode($response->getBody(), true)[0];
     }
 
     /**
@@ -79,7 +79,7 @@ class Provider extends AbstractProvider implements ProviderInterface
      */
     protected function getTokenFields($code)
     {
-        return array_merge(parent::getTokenFields($code), [
+        return \array_merge(parent::getTokenFields($code), [
             'grant_type' => 'authorization_code',
         ]);
     }

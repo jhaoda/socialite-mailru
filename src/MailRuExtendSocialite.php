@@ -1,4 +1,5 @@
 <?php
+
 namespace JhaoDa\SocialiteProviders\MailRu;
 
 use SocialiteProviders\Manager\SocialiteWasCalled;
@@ -13,7 +14,7 @@ class MailRuExtendSocialite
     public function handle(SocialiteWasCalled $socialiteWasCalled)
     {
         $socialiteWasCalled->extendSocialite(
-            'mailru', __NAMESPACE__ . '\Provider'
+            'mailru', Provider::class
         );
     }
 }
